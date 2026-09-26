@@ -52,6 +52,8 @@ primera animación listada es la que se usa por defecto.
 | `pinchos` | `normal`(1) | 16×16 |
 | `banca` | `normal`(1) — banca de descanso / guardado | 32×16 |
 | `moneda` | `girar`(4) — "geo" | 10×10 |
+| `escupidor` | `quieto`(2), `escupir`(2) — mirando a la DERECHA | 16×14 |
+| `bolita` | `normal`(2) — lo que escupe el escupidor | 6×6 |
 | `puerta` | `normal`(1) — salida al siguiente nivel | 16×32 |
 | `cristal` | `brillar`(2) — decoración | 16×16 |
 | `hongo` | `normal`(1) — decoración | 16×16 |

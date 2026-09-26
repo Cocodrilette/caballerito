@@ -30,26 +30,35 @@ export const DURACION_DASH = 0.16;
 export const RECARGA_DASH = 0.5;
 
 // --- Cuando te hacen daño ---
-export const TIEMPO_INVULNERABLE = 1.2; // segundos que parpadeas y nada te lastima
+export const TIEMPO_INVULNERABLE = 0.8; // segundos que parpadeas y nada te lastima (¡cortito, no te confíes!)
 export const TIEMPO_ATURDIDO = 0.25; // segundos en que no puedes moverte tras un golpe
 export const EMPUJON_DAÑO = 180; // qué tan lejos te lanza un golpe
 export const TIEMPO_REAPARECER = 1.5; // segundos antes de volver a la banca al perder
 
 // --- Enemigos ---
-export const GUSANO_VELOCIDAD = 30;
-export const GUSANO_VIDA = 2;
-export const MOSQUITO_VELOCIDAD = 55;
-export const MOSQUITO_VIDA = 2;
-export const MOSQUITO_DISTANCIA_VISTA = 110; // desde qué tan lejos te ve
+export const GUSANO_VELOCIDAD = 50; // ¡ya no es tan lento!
+export const GUSANO_VIDA = 3; // caparazón duro: tres golpes
+export const MOSQUITO_VELOCIDAD = 80;
+export const MOSQUITO_VIDA = 3;
+export const MOSQUITO_DISTANCIA_VISTA = 160; // desde qué tan lejos te ve (¡ojos de águila!)
+export const MOSQUITO_VELOCIDAD_PICADA = 250; // la picada: ¡zas! en línea recta
+export const MOSQUITO_TIEMPO_ENTRE_PICADAS = 2; // segundos persiguiéndote antes de picar
+export const MOSQUITO_AVISO_PICADA = 0.3; // cuánto tiembla antes de picar (¡esquívalo!)
+export const ESCUPIDOR_VIDA = 3;
+export const ESCUPIDOR_TIEMPO_ESCUPIR = 2; // segundos entre cada escupitajo
+export const ESCUPIDOR_DISTANCIA = 180; // desde qué tan lejos te escupe
+export const BOLITA_VELOCIDAD = 130; // qué tan rápido vuela la bolita (¡sáltala!)
 export const EMPUJON_ENEMIGO = 160; // cuánto retrocede un enemigo cuando le pegas
 export const GEO_POR_ENEMIGO = 3; // monedas que suelta al caer
 
 // --- El jefe: Gran Escarabajo ---
-export const JEFE_VIDA = 16;
-export const JEFE_VELOCIDAD_EMBESTIDA = 190;
+export const JEFE_VIDA = 28;
+export const JEFE_VELOCIDAD_EMBESTIDA = 250;
 export const JEFE_FUERZA_SALTO = 480;
-export const JEFE_TIEMPO_PAUSA = 1.4; // cuánto descansa (¡aprovecha para pegarle!)
+export const JEFE_TIEMPO_PAUSA = 0.9; // cuánto descansa (¡pégale rapidito!)
 export const JEFE_DISTANCIA_DESPERTAR = 150;
+export const JEFE_FURIA_RAPIDEZ = 1.3; // con media vida se enoja: ¡todo 1.3 veces más rápido!
+export const JEFE_VELOCIDAD_ONDA = 150; // ondas de choque al aterrizar enojado (¡sáltalas!)
 export const GEO_JEFE = 25;
 
 // --- La cámara y el fondo ---

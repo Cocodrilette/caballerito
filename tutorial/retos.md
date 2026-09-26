@@ -111,16 +111,16 @@ No olvides el **@** (inicio) y la **>** (puerta). Luego **▶ ¡JUGAR!**
 ✅ Puedes jugar tu nivel de principio a fin.
 
 ### [ ] Reto 8: Conéctalo a la aventura 🔗
-🎯 Haz que al terminar el nivel 3 llegues a TU nivel, y que tu nivel lleve al jefe.
-📂 Taller de Niveles + `niveles/nivel3.json`
+🎯 Haz que al terminar el nivel 5 (Nido de los Mosquitos) llegues a TU nivel, y que tu nivel lleve al jefe.
+📂 Taller de Niveles + `niveles/nivel5.json`
 💡
 1. En el taller, en "🚪 La puerta lleva a…" escribe `jefe`. Presiona **💾 Guardar en el juego** (ponle un nombre, por ejemplo `mi_nivel`).
-2. Abre `niveles/nivel3.json` y cambia su `"siguiente"` por `"mi_nivel"`.
-✅ Juega el nivel 3 (`?nivel=nivel3`), pasa la puerta... ¡y aparece tu nivel!
+2. Abre `niveles/nivel5.json` y cambia su `"siguiente"` por `"mi_nivel"`.
+✅ Juega el nivel 5 (`?nivel=nivel5`), pasa la puerta... ¡y aparece tu nivel!
 
 <details><summary>🔓 Solución</summary>
 
-En `niveles/nivel3.json`:
+En `niveles/nivel5.json`:
 ```json
 "siguiente": "mi_nivel",
 ```
@@ -247,6 +247,7 @@ destroy(moneda);
 💡 Recuerda el capítulo 5: hay una pieza de LEGO que cambia el tamaño.
 Agrégala en la lista de `add([ ... ])`.
 ✅ Mosquitos enormes en el nivel 2.
+⚠️ ¡Ojo! Más grandes también significa más fáciles de golpear... y más difíciles de esquivar.
 
 <details><summary>🔓 Solución</summary>
 

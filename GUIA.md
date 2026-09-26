@@ -118,7 +118,7 @@ Cambia `620` por `1500`. ¿Cómo suena ahora? ¿Y si pones `frecuenciaFinal: 100
 | `niveles/` | Los niveles (archivos `.json`) |
 | `src/jugador.js` | El personaje que controlas |
 | `src/habilidades/` | Saltar, atacar, dash (un archivo cada una) |
-| `src/enemigos/` | Gusano, mosquito y el jefe |
+| `src/enemigos/` | Gusano, mosquito, escupidor y el jefe |
 | `src/sprites/` | Todos los dibujos, hechos con letras |
 | `src/musica/` | Las canciones, escritas con notas |
 | `src/audio/efectos.js` | Los efectos de sonido |

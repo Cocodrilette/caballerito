@@ -4,12 +4,16 @@ import { TAMAÑO_BLOQUE, LETRA_CHICA } from "./config.js";
 
 const B = TAMAÑO_BLOQUE;
 
-// Pinchos: solo la parte de abajo lastima.
-export function crearPinchos(mundo, x, y) {
+// Pinchos: solo la parte de las puntas lastima.
+// Si cuelgan del techo, se dibujan al revés (flipY).
+export function crearPinchos(mundo, x, y, colgando = false) {
+  const zonaQueDuele = colgando
+    ? new Rect(vec2(2, 0), B - 4, B - 7) // arriba
+    : new Rect(vec2(2, 7), B - 4, B - 7); // abajo
   return mundo.add([
-    sprite("pinchos"),
+    sprite("pinchos", { flipY: colgando }),
     pos(x, y),
-    area({ shape: new Rect(vec2(2, 7), B - 4, B - 7) }),
+    area({ shape: zonaQueDuele }),
     "pinchos",
   ]);
 }

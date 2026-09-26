@@ -16,6 +16,7 @@ export const LEYENDA = [
   { simbolo: ">", nombre: "Puerta",       sprite: "puerta",     tipo: "objeto",     color: "#6dd3ff", descripcion: "Salida al siguiente nivel." },
   { simbolo: "g", nombre: "Gusano",       sprite: "gusano",     tipo: "enemigo",    color: "#e57373", descripcion: "Camina de lado a lado. Un golpe fácil." },
   { simbolo: "m", nombre: "Mosquito",     sprite: "mosquito",   tipo: "enemigo",    color: "#ba68c8", descripcion: "Vuela hacia ti cuando te ve." },
+  { simbolo: "e", nombre: "Escupidor",    sprite: "escupidor",  tipo: "enemigo",    color: "#a5d65a", descripcion: "Se queda quieto y te escupe bolitas. ¡Sáltalas!" },
   { simbolo: "J", nombre: "Jefe",         sprite: "jefe",       tipo: "enemigo",    color: "#ff5252", descripcion: "El Gran Escarabajo. Embiste y salta." },
   { simbolo: "*", nombre: "Cristal",      sprite: "cristal",    tipo: "decoracion", color: "#7fdbff", descripcion: "Decoración que brilla. No hace nada." },
   { simbolo: "h", nombre: "Hongo",        sprite: "hongo",      tipo: "decoracion", color: "#9ccc65", descripcion: "Decoración. Un hongo de cueva." },

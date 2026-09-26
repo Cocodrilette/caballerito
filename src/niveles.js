@@ -6,6 +6,7 @@ import { infoDe } from "./leyenda.js";
 import * as objetos from "./objetos.js";
 import { crearGusano } from "./enemigos/gusano.js";
 import { crearMosquito } from "./enemigos/mosquito.js";
+import { crearEscupidor } from "./enemigos/escupidor.js";
 import { crearJefe } from "./enemigos/jefe.js";
 
 // Vite junta todos los archivos .json de la carpeta niveles/.
@@ -90,7 +91,9 @@ export function construirNivel(datos, mundo) {
       } else if (simbolo === "-") {
         mundo.add([sprite("plataforma"), pos(x, y)]);
       } else if (simbolo === "^") {
-        objetos.crearPinchos(mundo, x, y);
+        // Si hay roca arriba y nada abajo, los pinchos cuelgan del techo.
+        const colgando = letra(col, fila - 1) === "=" && letra(col, fila + 1) !== "=";
+        objetos.crearPinchos(mundo, x, y, colgando);
       } else if (simbolo === "@") {
         nivel.inicio = vec2(x + B / 2, y + B);
       } else if (simbolo === "B") {
@@ -104,6 +107,8 @@ export function construirNivel(datos, mundo) {
         crearGusano(nivel, x + B / 2, y + B);
       } else if (simbolo === "m") {
         crearMosquito(nivel, x + B / 2, y + B / 2);
+      } else if (simbolo === "e") {
+        crearEscupidor(nivel, x + B / 2, y + B);
       } else if (simbolo === "J") {
         crearJefe(nivel, x + B / 2, y + B);
         nivel.tieneJefe = true;

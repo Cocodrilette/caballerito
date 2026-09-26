@@ -35,10 +35,11 @@ La leyenda (en `src/leyenda.js`) dice qué es cada letra:
 |---|---|---|---|
 | `=` | Suelo | `g` | Gusano |
 | `-` | Plataforma | `m` | Mosquito |
-| `^` | Pinchos | `J` | Jefe |
-| `@` | Inicio del jugador | `*` | Cristal |
-| `B` | Banca | `h` | Hongo |
-| `$` | Geo (moneda) | `>` | Puerta |
+| `^` | Pinchos | `e` | Escupidor |
+| `@` | Inicio del jugador | `J` | Jefe |
+| `B` | Banca | `*` | Cristal |
+| `$` | Geo (moneda) | `h` | Hongo |
+| `>` | Puerta | | |
 
 ⚠️ **Todas las filas deben tener el mismo largo.** ¡Los espacios también cuentan!
 
