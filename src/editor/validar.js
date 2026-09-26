@@ -1,6 +1,6 @@
 // VALIDAR: revisamos el nivel antes de jugar o guardar,
 // y le decimos al constructor qué falta, con cariño.
-
+import { canciones } from "../audio/canciones.js";
 import { infoDe } from "../leyenda.js";
 import { emparejarFilas } from "./mapa.js";
 
@@ -47,7 +47,7 @@ export function arreglarNivel(datos) {
   }
   const nivel = {
     nombre: typeof datos.nombre === "string" ? datos.nombre : "Nivel sin nombre",
-    musica: ["menu", "cueva", "jefe"].includes(datos.musica) ? datos.musica : "cueva",
+    musica: canciones[datos.musica] ? datos.musica : "cueva",
     fondo: /^#[0-9a-f]{6}$/i.test(datos.fondo) ? datos.fondo : "#0b1020",
     siguiente: typeof datos.siguiente === "string" ? datos.siguiente : "",
     consejo: typeof datos.consejo === "string" ? datos.consejo : "",

@@ -11,6 +11,7 @@ import { prepararLienzo, dibujar, cambiarZoom, ajustarZoomALaPantalla } from "./
 import { prepararPaleta, marcarElegidos, elegirHerramienta } from "./paleta.js";
 import { prepararTexto, mostrarTexto } from "./texto.js";
 import * as archivos from "./archivos.js";
+import { canciones } from "../audio/canciones.js";
 import { revisarNivel, nombreDeArchivoValido, nombreParaArchivo } from "./validar.js";
 import { avisar, preguntar, pedirTexto } from "./mensajes.js";
 
@@ -304,7 +305,20 @@ async function guardarEnElJuego() {
 
 // ---------- Campos del nivel ----------
 
+// Una opción por cada canción de src/musica/. ¡Las nuevas aparecen solas!
+const ICONOS_MUSICA = { cueva: "🦇", jefe: "👹", menu: "🏠" };
+function llenarMusicas() {
+  const lista = $("campoMusica");
+  for (const nombre of Object.keys(canciones).sort()) {
+    const opcion = document.createElement("option");
+    opcion.value = nombre;
+    opcion.textContent = `${ICONOS_MUSICA[nombre] || "🎵"} ${nombre}`;
+    lista.append(opcion);
+  }
+}
+
 function prepararCampos() {
+  llenarMusicas();
   $("campoNombre").addEventListener("input", (e) => cambiarDato("nombre", e.target.value));
   $("campoMusica").addEventListener("change", (e) => cambiarDato("musica", e.target.value));
   $("campoFondo").addEventListener("input", (e) => cambiarDato("fondo", e.target.value));
