@@ -13,7 +13,8 @@ export function usarSalto(jugador) {
 
     // "Tiempo coyote": como el coyote de los dibujos, puedes saltar
     // un instante después de salirte del borde.
-    tiempoSinSuelo = jugador.isGrounded() ? 0 : tiempoSinSuelo + dt();
+    // Sentado en la banca cuenta como estar en el suelo: ¡puedes saltar desde ahí!
+    tiempoSinSuelo = jugador.isGrounded() || jugador.sentado ? 0 : tiempoSinSuelo + dt();
     tiempoDesdeBoton += dt();
 
     if (isButtonPressed("saltar")) {

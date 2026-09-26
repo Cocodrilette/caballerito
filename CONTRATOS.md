@@ -41,7 +41,7 @@ primera animación listada es la que se usa por defecto.
 
 | nombre | animaciones | tamaño |
 |---|---|---|
-| `caballero` | `quieto`(2), `correr`(4), `saltar`(1), `caer`(1), `atacar`(2), `dash`(1), `herido`(1) | 16×24 |
+| `caballero` | `quieto`(2), `correr`(4), `saltar`(1), `caer`(1), `atacar`(2), `dash`(1), `herido`(1), `sentado`(2) — en la banca | 16×24 |
 | `tajo` | `tajo`(3) — arco del aguijón, apuntando a la DERECHA | 24×16 |
 | `gusano` | `caminar`(2) | 16×12 |
 | `mosquito` | `volar`(2) | 14×12 |

@@ -48,6 +48,7 @@ export function crearJugador(nivel, estado, lugar) {
 
   jugador.onUpdate(() => {
     if (!jugador.vivo) return;
+    if (jugador.sentado) return quedarseSentado(jugador);
     correr(jugador);
     recordarLugarSeguro(jugador);
     elegirAnimacion(jugador);
@@ -75,6 +76,7 @@ export function crearJugador(nivel, estado, lugar) {
   // ¡Auch! Perder una máscara.
   jugador.herir = (desdeX, volverAlLugarSeguro = false) => {
     if (!jugador.vivo || jugador.tiempoInvulnerable > 0 || nivel.mundo.paused) return;
+    if (jugador.sentado) jugador.levantarse();
 
     estado.vidas -= 1;
     efecto("herido");
@@ -100,7 +102,38 @@ export function crearJugador(nivel, estado, lugar) {
     }
   };
 
+  // Sentarse en la banca: se queda quietecito encima del asiento.
+  jugador.sentarse = (banca) => {
+    jugador.sentado = true;
+    jugador.pos = vec2(banca.pos.x, banca.pos.y - 5); // el asiento está 5 píxeles arriba del piso
+    jugador.vel = vec2(0);
+    jugador.empujon = 0;
+    jugador.gravityScale = 0; // sin gravedad: así no se cae de la banca
+    ponerAnimacion(jugador, tieneAnimacion(jugador, "sentado") ? "sentado" : "quieto");
+  };
+
+  jugador.levantarse = () => {
+    jugador.sentado = false;
+    if (!(jugador.enDash > 0)) jugador.gravityScale = 1; // el dash apaga la gravedad él solito
+  };
+
   return jugador;
+}
+
+// Mientras está sentado no se mueve. Si presionas cualquier botón, se levanta.
+function quedarseSentado(jugador) {
+  const botones = ["izquierda", "derecha", "saltar", "atacar", "dash"];
+  if (botones.some((boton) => isButtonPressed(boton))) {
+    jugador.levantarse(); // ¡y si era saltar, sale saltando!
+    return;
+  }
+  jugador.vel = vec2(0);
+}
+
+// ¿Este personaje tiene esa animación dibujada?
+function tieneAnimacion(jugador, nombre) {
+  const dibujo = getSprite(jugador.dibujo);
+  return Boolean(dibujo && dibujo.data && dibujo.data.anims[nombre]);
 }
 
 // Correr a la izquierda y a la derecha.

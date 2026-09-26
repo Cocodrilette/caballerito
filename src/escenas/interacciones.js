@@ -21,8 +21,8 @@ export function conectarObjetos(nivel, estado, alSalir) {
   for (const banca of nivel.mundo.get("banca")) {
     banca.onUpdate(() => {
       const cerca = jugador.vivo && jugador.isColliding(banca);
-      banca.pista.opacity = cerca ? 1 : 0;
-      if (cerca && isButtonPressed("arriba")) descansar(nivel, estado, banca);
+      banca.pista.opacity = cerca && !jugador.sentado ? 1 : 0;
+      if (cerca && !jugador.sentado && isButtonPressed("arriba")) descansar(nivel, estado, banca);
     });
   }
 
@@ -37,6 +37,7 @@ export function conectarObjetos(nivel, estado, alSalir) {
 }
 
 function descansar(nivel, estado, banca) {
+  nivel.jugador.sentarse(banca);
   estado.vidas = VIDAS_MAXIMAS;
   estado.reaparicion = vec2(banca.pos);
   efecto("banca");
