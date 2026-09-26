@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería de sprites</title>
+  <style>
+    body { margin: 0; padding: 16px; background: #0b1020; color: #dfe6f5; font-family: system-ui, sans-serif; }
+    h1 { font-size: 20px; margin: 0 0 12px; }
+    .galeria { display: flex; flex-wrap: wrap; gap: 12px; }
+    .ficha { background: #141a30; border: 1px solid #2a3355; border-radius: 8px; padding: 8px; }
+    .ficha h2 { font-size: 14px; margin: 0 0 6px; color: #8fe3ff; }
+    .anims { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+    .anim { text-align: center; font-size: 11px; color: #8f9bb8; }
+    canvas { image-rendering: pixelated; display: block; background: #0b1020; }
+    #error { color: #ff8080; white-space: pre-wrap; font-weight: bold; }
+    #kaplay { margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Galería de sprites del Caballerito</h1>
+  <div id="error"></div>
+  <div class="galeria" id="galeria"></div>
+  <h1 style="margin-top:16px">Probando con Kaplay</h1>
+  <canvas id="kaplay"></canvas>
+
+  <script type="module">
+    import kaplay from "kaplay";
+    import { prepararSprites, cargarSprites } from "../src/motor/cargarSprites.js";
+
+    const ZOOM = 6;
+
+    try {
+      const lista = prepararSprites();
+      const galeria = document.getElementById("galeria");
+
+      for (const s of lista) {
+        const ficha = document.createElement("div");
+        ficha.className = "ficha";
+        ficha.innerHTML = `<h2>${s.nombre} <small>(${s.ancho}×${s.alto})</small></h2>`;
+        const fila = document.createElement("div");
+        fila.className = "anims";
+        const zoom = s.ancho > 30 ? 3 : ZOOM;
+
+        for (const [nombre, a] of Object.entries(s.anims)) {
+          const caja = document.createElement("div");
+          caja.className = "anim";
+          const lienzo = document.createElement("canvas");
+          lienzo.width = s.ancho * zoom;
+          lienzo.height = s.alto * zoom;
+          const pincel = lienzo.getContext("2d");
+          pincel.imageSmoothingEnabled = false;
+          let cuadro = a.from;
+          const dibujar = () => {
+            pincel.clearRect(0, 0, lienzo.width, lienzo.height);
+            pincel.drawImage(s.lienzo, cuadro * s.ancho, 0, s.ancho, s.alto, 0, 0, lienzo.width, lienzo.height);
+          };
+          dibujar();
+          setInterval(() => {
+            cuadro = cuadro >= a.to ? a.from : cuadro + 1;
+            dibujar();
+          }, 1000 / Math.max(a.speed, 2));
+          caja.append(lienzo, `${nombre} (${a.to - a.from + 1})`);
+          fila.append(caja);
+        }
+        // Todos los cuadros quietos, uno al lado del otro
+        const tira = document.createElement("canvas");
+        tira.width = s.lienzo.width * zoom;
+        tira.height = s.alto * zoom;
+        tira.style.marginTop = "6px";
+        const pt = tira.getContext("2d");
+        pt.imageSmoothingEnabled = false;
+        pt.drawImage(s.lienzo, 0, 0, tira.width, tira.height);
+        ficha.append(fila, tira);
+        galeria.append(ficha);
+      }
+
+      // Segunda prueba: cargar de verdad en Kaplay y mostrar cada sprite.
+      kaplay({ global: true, canvas: document.getElementById("kaplay"), width: 480, height: 140, scale: 2, background: [11, 16, 32] });
+      await cargarSprites();
+      let x = 8;
+      for (const s of lista) {
+        const primera = Object.keys(s.anims)[0];
+        add([sprite(s.nombre, { anim: primera }), pos(x, 60 - s.alto / 2)]);
+        x += s.ancho + 6;
+      }
+      add([sprite("suelo"), pos(8, 100)]);
+      add([sprite("suelo_borde"), pos(24, 100)]);
+      add([sprite("suelo_borde"), pos(40, 100)]);
+      add([sprite("caballero", { anim: "correr" }), pos(60, 76)]);
+      add([sprite("tajo", { anim: "tajo" }), pos(76, 80)]);
+      window.listo = true;
+    } catch (e) {
+      document.getElementById("error").textContent = e.message;
+      console.error(e);
+      window.listo = true;
+    }
+  </script>
+</body>
+</html>

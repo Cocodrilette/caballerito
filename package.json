@@ -1,0 +1,18 @@
+{
+  "name": "caballerito",
+  "version": "1.0.0",
+  "description": "Un juego de aventura inspirado en Hollow Knight, hecho para aprender a programar",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "kaplay": "^3001.0.19"
+  },
+  "devDependencies": {
+    "vite": "^8.3.1"
+  }
+}
