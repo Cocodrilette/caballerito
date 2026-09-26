@@ -306,8 +306,8 @@ async function guardarEnElJuego() {
 // ---------- Campos del nivel ----------
 
 // Una opción por cada canción de src/musica/. ¡Las nuevas aparecen solas!
-const ICONOS_MUSICA = { cueva: "🦇", jefe: "👹", menu: "🏠" };
 function llenarMusicas() {
+  const ICONOS_MUSICA = { cueva: "🦇", jefe: "👹", menu: "🏠" };
   const lista = $("campoMusica");
   for (const nombre of Object.keys(canciones).sort()) {
     const opcion = document.createElement("option");
