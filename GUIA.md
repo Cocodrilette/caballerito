@@ -1,5 +1,8 @@
 # 🗡️ Guía de Caballerito: ¡cambia tu propio juego!
 
+> 📚 **¿Quieres aprender de verdad?** Sigue el **[Tutorial completo](tutorial/README.md)**:
+> 10 capítulos y **30 retos** del más fácil al más difícil. Esta guía es solo el resumen rápido.
+
 Este juego está hecho con **código**. El código son instrucciones que le
 damos a la computadora. Y como tú puedes cambiar las instrucciones...
 **¡tú puedes cambiar el juego!**

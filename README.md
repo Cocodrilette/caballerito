@@ -12,6 +12,7 @@ npm run build      # versión estática en dist/
 
 En Windows: doble clic en `JUGAR.bat`.
 
-- **Para aprender / modificar:** [GUIA.md](GUIA.md)
+- **Tutorial para aprender a programar (10 capítulos + 30 retos):** [tutorial/](tutorial/README.md)
+- **Guía rápida:** [GUIA.md](GUIA.md)
 - **Formatos compartidos (sprites, niveles, sonido):** [CONTRATOS.md](CONTRATOS.md)
 - **Herramientas:** `/herramientas/ver-sprites.html` (galería), `/herramientas/probar-sonidos.html` (audio)
