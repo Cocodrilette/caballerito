@@ -5,6 +5,10 @@
 // Vite trae todos los archivos de la carpeta sprites de una vez.
 const archivos = import.meta.glob("../sprites/*.js", { eager: true });
 
+// Si un dibujo cambia (por ejemplo, desde el Taller de Dibujos), recargamos
+// solo las páginas que usan los dibujos, no las de los talleres.
+if (import.meta.hot) import.meta.hot.accept(() => location.reload());
+
 // Un error amable que dice dónde está el problema.
 function problema(archivo, mensaje) {
   return new Error(`Problema en el dibujo "src/sprites/${archivo}": ${mensaje}`);

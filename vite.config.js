@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import { resolve } from "node:path";
 import { guardarNiveles } from "./src/editor/pluginGuardar.js"; // "Guardar en el juego" del editor
+import { tallerDeDibujos } from "./src/editor-sprites/pluginSprites.js"; // leer y guardar dibujos
 
 export default defineConfig({
-  plugins: [guardarNiveles()],
+  plugins: [guardarNiveles(), tallerDeDibujos()],
   server: { open: true },
   build: {
     rollupOptions: {

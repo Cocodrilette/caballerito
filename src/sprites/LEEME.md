@@ -36,6 +36,13 @@ Si cambias un `.` por una `W`, aparece un píxel blanco.
 2. Usa solo letras que existan en la paleta.
 3. Si algo está mal, el juego te dirá qué archivo y qué fila revisar.
 
+## Pintar con el ratón
+
+Con el juego encendido (`npm run dev`), abre
+`http://localhost:5173/sprites.html`: es el **Taller de Dibujos**.
+Pintas con el ratón, agregas cuadros y colores, y al guardar
+escribe estos archivos por ti (¡sin borrar tus comentarios!).
+
 ## Ver todos los dibujos
 
 Con el juego encendido (`npm run dev`), abre

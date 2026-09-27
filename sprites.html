@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taller de Dibujos · Caballerito</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/editor/editor.css">
+  <link rel="stylesheet" href="/src/editor-sprites/taller.css">
+</head>
+<body>
+  <!-- Arriba: el título, los archivos y el gran botón de guardar -->
+  <header class="cabecera">
+    <div class="titulo">
+      <span class="escudo">🎨</span>
+      <div>
+        <h1>Taller de Dibujos</h1>
+        <p id="subtitulo">¡Pinta al caballerito, a sus enemigos y todo lo demás!</p>
+      </div>
+    </div>
+    <nav class="archivos">
+      <button id="botonAbrir" class="boton">📂 Abrir dibujo</button>
+      <button id="botonNuevo" class="boton">📄 Dibujo nuevo</button>
+      <button id="botonCodigo" class="boton">📜 Ver el código</button>
+      <a class="boton" href="editor.html">🗺️ Taller de Niveles</a>
+    </nav>
+    <button id="botonGuardar" class="jugar">💾 ¡GUARDAR!</button>
+  </header>
+
+  <main class="taller">
+    <!-- Izquierda: herramientas y colores -->
+    <aside class="panel izquierda">
+      <h2>Herramientas</h2>
+      <div id="herramientas" class="herramientas"></div>
+      <h2>Colores</h2>
+      <div id="colores"></div>
+      <div id="editarColor" class="editar-color"></div>
+    </aside>
+
+    <!-- Centro: el dibujo grandote y los cuadros de la animación -->
+    <section class="centro">
+      <div class="barra">
+        <div class="grupo-barra">
+          <button id="botonDeshacer" class="boton" title="Deshacer (Ctrl+Z)">↩️ Deshacer</button>
+          <button id="botonRehacer" class="boton" title="Rehacer (Ctrl+Y)">↪️ Rehacer</button>
+        </div>
+        <div class="grupo-barra">
+          <button id="botonVoltear" class="boton" title="Voltear el cuadro como en un espejo">🪞 Voltear</button>
+          <button class="boton redondo mover" data-dx="-1" data-dy="0" title="Mover el dibujo a la izquierda">⬅</button>
+          <button class="boton redondo mover" data-dx="0" data-dy="-1" title="Mover el dibujo arriba">⬆</button>
+          <button class="boton redondo mover" data-dx="0" data-dy="1" title="Mover el dibujo abajo">⬇</button>
+          <button class="boton redondo mover" data-dx="1" data-dy="0" title="Mover el dibujo a la derecha">➡</button>
+          <button id="botonLimpiar" class="boton" title="Borrar todo el cuadro">🧹 Limpiar</button>
+        </div>
+        <div class="grupo-barra">
+          <button id="botonAlejar" class="boton redondo" title="Alejar (−)">−</button>
+          <span id="textoZoom" class="texto-zoom">16×</span>
+          <button id="botonAcercar" class="boton redondo" title="Acercar (+)">+</button>
+          <button id="botonCuadricula" class="boton" title="Mostrar u ocultar la cuadrícula (C)">▦ Cuadrícula</button>
+          <button id="botonCebolla" class="boton apagado" title="Ver el cuadro anterior clarito, para animar (O)">🧅 Papel cebolla</button>
+        </div>
+      </div>
+
+      <div class="vista">
+        <div id="zonaLienzo" class="zona-lienzo">
+          <div class="hoja"><canvas id="lienzo"></canvas></div>
+        </div>
+        <div class="pie-lienzo">
+          <span id="posicion"></span>
+          <span class="truco">🖱️ Clic: pintar · Clic derecho: borrar · Rueda: zoom · ← →: cambiar de cuadro</span>
+        </div>
+      </div>
+
+      <div class="cuadros-caja">
+        <div class="cuadros-cabeza">
+          <h3 id="tituloCuadros">🎞️ Cuadros</h3>
+          <div class="grupo-barra">
+            <button id="botonCopiarCuadro" class="boton" title="Agregar una copia de este cuadro">➕ Copiar cuadro</button>
+            <button id="botonCuadroVacio" class="boton" title="Agregar un cuadro vacío">📄 Cuadro vacío</button>
+            <button id="botonCuadroIzq" class="boton redondo" title="Mover este cuadro antes">◀</button>
+            <button id="botonCuadroDer" class="boton redondo" title="Mover este cuadro después">▶</button>
+            <button id="botonBorrarCuadro" class="boton" title="Quitar este cuadro">🗑️</button>
+          </div>
+        </div>
+        <div id="tiraCuadros" class="tira-cuadros"></div>
+      </div>
+    </section>
+
+    <!-- Derecha: vista previa, animaciones, tamaño y letras -->
+    <aside class="panel derecha">
+      <h2>Así se mueve</h2>
+      <div class="previa">
+        <canvas id="previa"></canvas>
+        <canvas id="previaReal" title="Tamaño real en el juego"></canvas>
+      </div>
+
+      <h2>Animaciones</h2>
+      <div id="listaAnimaciones" class="lista-animaciones"></div>
+      <div class="grupo-barra envolver">
+        <button id="botonNuevaAnim" class="boton">➕ Nueva</button>
+        <button id="botonRenombrarAnim" class="boton">✏️ Nombre</button>
+        <button id="botonBorrarAnim" class="boton">🗑️</button>
+      </div>
+      <div class="tamano">
+        <span class="etiqueta">⚡ Velocidad</span>
+        <input id="campoVelocidad" type="number" min="1" max="60">
+      </div>
+      <label class="casilla">
+        <input id="campoRepetir" type="checkbox">
+        <span>🔁 Repetir sin parar</span>
+      </label>
+
+      <h2>Tamaño</h2>
+      <div class="tamano">
+        <span class="etiqueta">↔️ Ancho</span>
+        <button id="menosAncho" class="boton redondo" title="Quitar columna a la derecha">−</button>
+        <input id="campoAncho" type="number" min="1" max="64">
+        <button id="masAncho" class="boton redondo" title="Agregar columna a la derecha">+</button>
+      </div>
+      <div class="tamano">
+        <span class="etiqueta">↕️ Alto</span>
+        <button id="menosAlto" class="boton redondo" title="Quitar fila de arriba">−</button>
+        <input id="campoAlto" type="number" min="1" max="64">
+        <button id="masAlto" class="boton redondo" title="Agregar fila arriba">+</button>
+      </div>
+      <p class="explica">Cambia todos los cuadros. El ancho crece por la derecha y el alto por arriba (así los pies no se mueven).</p>
+
+      <h2>En letras</h2>
+      <p class="explica">Este cuadro escrito con letras. ¡Cámbialas aquí también!</p>
+      <textarea id="textoCuadro" class="texto-cuadro" spellcheck="false" autocomplete="off" wrap="off"></textarea>
+      <p id="errorTexto" class="error-texto"></p>
+    </aside>
+  </main>
+
+  <div id="avisos" class="avisos"></div>
+  <dialog id="dialogo" class="dialogo"></dialog>
+
+  <script type="module" src="/src/editor-sprites/taller.js"></script>
+</body>
+</html>

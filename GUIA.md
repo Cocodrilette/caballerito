@@ -18,6 +18,7 @@ Se abre el navegador con el juego. **No cierres la ventana negra** mientras jueg
 
 - El juego: `http://localhost:5173/`
 - El taller de niveles: `http://localhost:5173/editor.html`
+- El taller de dibujos: `http://localhost:5173/sprites.html`
 
 > La primera vez hay que instalar **Node.js** desde https://nodejs.org (versión LTS).
 
@@ -82,6 +83,10 @@ Cada letra es una cosa. Mira la lista completa en `src/leyenda.js`.
 Abre `src/sprites/moneda.js`. Los dibujos son letras: **cada letra es un píxel**
 y cada letra tiene un color en la `paleta`. Cambia algunas letras, guarda y mira.
 
+¿Prefieres pintar con el ratón? Abre el **Taller de Dibujos** (`http://localhost:5173/sprites.html`):
+pintas píxel por píxel, ves la animación moverse y al pulsar **💾 ¡GUARDAR!** se escribe el archivo
+de letras por ti. ¡Después abre el archivo y mira cómo quedó!
+
 Para ver todos los dibujos en grande: `http://localhost:5173/herramientas/ver-sprites.html`
 
 ⚠️ Todas las filas de un dibujo deben tener **el mismo largo**. Si te equivocas,
@@ -125,6 +130,7 @@ Cambia `620` por `1500`. ¿Cómo suena ahora? ¿Y si pones `frecuenciaFinal: 100
 | `src/escenas/` | Las pantallas: inicio, juego, pausa, victoria |
 | `src/guardado.js` | Cómo se guarda tu partida |
 | `editor.html`, `src/editor/` | El Taller de Niveles |
+| `sprites.html`, `src/editor-sprites/` | El Taller de Dibujos |
 | `CONTRATOS.md` | Las reglas que usan todas las partes para entenderse |
 
 ### 💡 Ideas para el futuro

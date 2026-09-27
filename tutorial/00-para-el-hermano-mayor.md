@@ -30,7 +30,7 @@ un segundo. Ese momento de "¡lo cambié yo!" es la magia que buscamos.
   `src/musica/*.js` (canciones en notas), `src/audio/efectos.js`.
 - **Código del juego:** `src/jugador.js`, `src/habilidades/`, `src/enemigos/`,
   `src/niveles.js`, `src/objetos.js`, `src/escenas/`.
-- **Herramientas:** `/editor.html` (niveles), `/herramientas/ver-sprites.html`,
+- **Herramientas:** `/editor.html` (niveles), `/sprites.html` (dibujos), `/herramientas/ver-sprites.html`,
   `/herramientas/probar-sonidos.html`.
 - **Motor:** [Kaplay](https://kaplayjs.com) en modo global (`add`, `pos`,
   `sprite`, `onUpdate`... están disponibles en todos los archivos).
